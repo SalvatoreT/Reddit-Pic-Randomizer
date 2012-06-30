@@ -37,39 +37,45 @@
     <span class="icon-bar"></span>
   </a> -->
     <!-- <a class="brand" href="#">reddit-pic-randomizer</a> -->
-    <div class="accordion">
+    <div class="accordion" id="subredditaccordion">
       <!-- Begin list of subreddits to be displayed -->
       <div class="accordion-group">
-        <li><a href="#" data-toggle="collapse" data-target="#delete1">pics</a>
-          <div>
-            <button class="btn collapse" id="delete1">Delete</button>
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-target="#pics" data-parent="subredditaccordion">pics</a>
+        </div>
+        <div class="accordion-body collapse in" id="pics" style="height: auto; ">
+          <div class="accordion-inner">
+            <button class="btn-danger collapse" style="height: auto; ">Delete</button>
           </div>
-        </li>
-        <li><a href="#" data-toggle="collapse" data-target="#delete2">aww</a></li>
-        <li>
-          <div>
-            <button class="btn collapse" id="delete2">Delete</button>
+        </div>
+      </div>
+
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-target="#aww" data-parent="subredditaccordion">aww</a>
+        </div>
+        <div class="accordion-body collapse in" id="aww" style="height: auto; ">
+          <div class="accordion-inner">
+            <button class="btn-danger collapse" style="height: auto; ">Delete</button>
           </div>
-        </li>
-        <li><a href="#" data-toggle="collapse" data-target="#delete3">cheneys</a></li>
-        <li>
-          <div>
-          <button class="btn collapse" id="delete3">Delete</button>
-          </div>
-        </li>
-        <li>
-          <form class="navbar-search pull-left">
+        </div>
+      </div>
+
+      <div class"accordion-group">
+        <div class="accordion-heading">
+          <form class="accordion-toggle search">
             <input type="text" class="search-query" placeholder="Add subreddit">
           </form>
-        </li>
-      </ul>
-    </div><!--/.nav-collapse -->
+        </div>
+      <div>
+
+    </div><!-- accordion -->
   
   <div class="container-fluid">
     <div class="span12">
       <img src="http://i.imgur.com/waJIe.jpg" />
     </div>
-    </div> <!-- /container -->
+  </div> <!-- /container -->
   
 
     <!-- Le javascript
