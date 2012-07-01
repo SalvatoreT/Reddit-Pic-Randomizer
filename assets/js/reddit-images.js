@@ -16,6 +16,40 @@ $(document).ready(function() {
 	});
 });
 
+
+      // <div class="accordion-group">
+      //   <div class="accordion-heading">
+      //     <h4 class="accordion-toggle" data-toggle="collapse" data-parent="#subreddit-container-list" href="#collapseOne">
+      //       pics
+      //     </h4>
+      //   </div>
+      //   <div id="collapseOne" class="accordion-body collapse">
+      //     <div class="accordion-inner">
+      //       <div id="picsSlider"></div>
+      //       <button class="btn-danger collapse" style="height: auto; ">Delete</button>
+      //     </div>
+      //   </div>
+      // </div>
+
+function addSubredditContainer(category) {
+	var subredditContainer = $('<div/>',{ class:"accordion-group" });
+	var header = $('<div/>',{ class:"accordion-heading" }).appendTo(subredditContainer);
+	var toggle = $('<h4/>',{ 
+		class:"accordion-toggle",
+		text:category
+		})
+		.attr("data-toggle","collapse")
+		.attr("data-parent",$("#subreddit-container-list"))
+		.appendTo(header);
+
+	var body = $('<div/>', {class: "accordion-body collapse"});
+	var body = $('<div/>', {class: "accordion-inner"});
+	subredditContainer.hide();
+	$('#subreddit-container-list').prepend(subredditContainer);
+	subredditContainer.show(1000);
+	
+}
+
 /**
 * Call the Reddit API to get images for a given subreddit
 * @param {string} category Subreddit we are calling

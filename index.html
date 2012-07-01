@@ -35,16 +35,16 @@
       </div>
     </div> <!-- /container -->
 
-    <div class="accordion" id="accordion2">
+    <form class="well form-search">
+      <input type="text" class="input-medium search-query" placeholder="Enter subreddit">
+      <button type="submit" class="btn">Add</button>
+    </form>
 
-      <form class="well form-search">
-        <input type="text" class="input-medium search-query" placeholder="Enter subreddit">
-        <button type="submit" class="btn">Add</button>
-      </form>
+    <div class="accordion" id="subreddit-container-list">
 
       <div class="accordion-group">
         <div class="accordion-heading">
-          <h4 class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+          <h4 class="accordion-toggle" data-toggle="collapse" data-parent="#subreddit-container-list" href="#collapseOne">
             pics
           </h4>
         </div>
@@ -58,7 +58,7 @@
 
       <div class="accordion-group">
         <div class="accordion-heading">
-          <h4 class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+          <h4 class="accordion-toggle" data-toggle="collapse" data-parent="#subreddit-container-list" href="#collapseTwo">
             aww
           </h4>
         </div>
@@ -72,7 +72,7 @@
 
       <div class="accordion-group">
         <div class="accordion-heading">
-          <h4 class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+          <h4 class="accordion-toggle" data-toggle="collapse" data-parent="#subreddit-container-list" href="#collapseThree">
             cute
           </h4>
         </div>
@@ -92,19 +92,13 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="./assets/js/jquery-1.7.2.min.js"></script>
     <script src="./assets/js/bootstrap-transition.js"></script>
-    <script src="./assets/js/bootstrap-alert.js"></script>
-    <script src="./assets/js/bootstrap-modal.js"></script>
     <script src="./assets/js/bootstrap-dropdown.js"></script>
-    <script src="./assets/js/bootstrap-scrollspy.js"></script>
-    <script src="./assets/js/bootstrap-tab.js"></script>
-    <script src="./assets/js/bootstrap-tooltip.js"></script>
-    <script src="./assets/js/bootstrap-popover.js"></script>
     <script src="./assets/js/bootstrap-button.js"></script>
     <script src="./assets/js/bootstrap-collapse.js"></script>
-    <script src="./assets/js/bootstrap-carousel.js"></script>
     <script src="./assets/js/bootstrap-typeahead.js"></script>
     <script src="./assets/js/jquery.wijmo-open.1.5.0.min.js"></script>
     <script src="./assets/js/jquery-ui-1.8.16.custom.min.js"></script>
+    <script src="./assets/js/reddit-images.js"></script>
 
 
   </body>
