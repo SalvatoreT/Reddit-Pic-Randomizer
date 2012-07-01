@@ -1,0 +1,11 @@
+
+body{
+  margin: 10px 10px 10px 10px
+}
+
+#random-image{
+  width:100%;
+  height:200px;
+  margin-bottom:5px;
+  background-size:contain;
+}

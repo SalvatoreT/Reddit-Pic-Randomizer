@@ -16,34 +16,30 @@ $(document).ready(function() {
 	});
 });
 
+$("#add-subreddit").click(function() {
+	var subreddit = $("#input-subreddit").val();
+	if(subreddit != '') {
+		updateImageDictionary(subreddit);
+		$("#input-subreddit").val('');
+	}
+});
 
-      // <div class="accordion-group">
-      //   <div class="accordion-heading">
-      //     <h4 class="accordion-toggle" data-toggle="collapse" data-parent="#subreddit-container-list" href="#collapseOne">
-      //       pics
-      //     </h4>
-      //   </div>
-      //   <div id="collapseOne" class="accordion-body collapse">
-      //     <div class="accordion-inner">
-      //       <div id="picsSlider"></div>
-      //       <button class="btn-danger collapse" style="height: auto; ">Delete</button>
-      //     </div>
-      //   </div>
-      // </div>
 
 function addSubredditContainer(category) {
-	var subredditContainer = $('<div/>',{ class:"accordion-group" });
-	var header = $('<div/>',{ class:"accordion-heading" }).appendTo(subredditContainer);
-	var toggle = $('<h4/>',{ 
-		class:"accordion-toggle",
+	var subredditContainer = $('<div/>',{ class:"well" });
+	var rowOfComponents = $('<div/>',{ class:"row" }).appendTo(subredditContainer);
+	var title =  $('<h3/>',{ 
+		class:"subreddittag pull-left",
 		text:category
-		})
-		.attr("data-toggle","collapse")
-		.attr("data-parent",$("#subreddit-container-list"))
-		.appendTo(header);
+		}).appendTo(rowOfComponents);
+	var slider =  $('<div/>',{ 
+		class:"slider",
+		id:category,
+		}).appendTo(rowOfComponents);
+	var button =  $('<div/>',{ 
+		class:"btn btn-danger pull-right",
+		}).appendTo(rowOfComponents).append($('<dev/>',{class:'icon-remove icon-white'}));
 
-	var body = $('<div/>', {class: "accordion-body collapse"});
-	var body = $('<div/>', {class: "accordion-inner"});
 	subredditContainer.hide();
 	$('#subreddit-container-list').prepend(subredditContainer);
 	subredditContainer.show(1000);
@@ -64,6 +60,7 @@ function updateImageDictionary(category) {
 	}).done(function(data){
 		var response = JSON.parse(data);
 		addImages(category, response[category]);
+		addSubredditContainer(category);
 	});
 }
 
@@ -90,12 +87,21 @@ function randomSubreddit() {
 * @return {string} url of the image
 */
 function randomImageUrl(category) {
-	if(subreddits[category] == null) return '';
+	if(!inSubreddits(category)) return '';
 	if(subreddits[category]['images'] == null) return '';
 	var urls = subreddits[category]['images'];
 	if(urls.length == 0) return '';
 	var index = Math.floor(Math.random() * urls.length);
 	return urls[index];
+}
+
+/**
+* Get a normal-random image from a category
+* @param {string} category Name of subreddit
+* @return {boolean} Whether or not this category exist already
+*/
+function inSubreddits(category) {
+	return (subreddits[category] != null);
 }
 
 /**
@@ -112,7 +118,7 @@ function addSubreddit(category) {
 * @param {string} category Subreddit we are deleting
 */
 function removeSubreddit(category) {
-	if(subreddits[category] == null) return;
+	if(!inSubreddits(category)) return;
 	normalizeWeightAround(category, 0);
 	delete subreddits[category];
 }
@@ -123,7 +129,7 @@ function removeSubreddit(category) {
 * @param {Array.<string>} images Picture urls we are adding
 */
 function addImages(category, images) {
-	if(subreddits[category] == null) return;
+	if(!inSubreddits(category)) return;
 	subreddits[category]['images'] = new Array();
 	subreddits[category]['images'] = images;
 }
@@ -135,7 +141,7 @@ function addImages(category, images) {
 * @param {number} weight New weight from [0,1] for given subreddit 
 */
 function normalizeWeightAround(category, weight) {
-	if(subreddits[category] == null) return;
+	if(!inSubreddits(category)) return;
 	subreddits[category]['weight'] = weight;
 	var remaining = 1 - weight;
 	var total = 0;
