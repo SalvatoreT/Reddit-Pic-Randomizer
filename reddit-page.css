@@ -26,6 +26,15 @@
   width: auto;
   margin-left: 0px;
   margin-right: 0px;
+  min-height: 28px;
+  text-align: center;
+}
+
+.btn-group {
+  float: right;
+  margin-top: -4px;
+  height: 28px;
+  margin-right: 19px;
 }
 
 .component-row {
@@ -38,8 +47,11 @@
 }
 
 .subreddit-tag {
-  margin-top: -10px;
-  position: absolute;
+  height: 28px;
+  line-height: 28px;
+  font-size: 18px;
+  font-weight: bold;
+  float: left;
 }
 
 #reddit-image-container {
