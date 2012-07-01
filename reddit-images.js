@@ -7,12 +7,8 @@
 
 /* mapping of subreddits to images they contain */ 
 var subreddits = new Array();
-var loaded = false;
+
 $(document).ready(function() {
-
-	if (!loaded) {
-		loaded = true;
-
 	$('#reddit-image-container').css('height',($(window).height()-78)+'px');
 	$('#image-container').css('min-width',($(window).width()-40)+'px');
 	$('#input-subreddit').css('width',($('#input-well').width()-63)+'px');	
@@ -22,11 +18,6 @@ $(document).ready(function() {
 		addSubreddit(category);
 		updateImageDictionary(category);
 	});
-
-
-	} else {
-		return;
-	}
 });
 
 
@@ -61,30 +52,16 @@ function addSubredditContainer(category) {
 	var rowOfComponents = $('<div/>',{
 		id:"component-row",
 		}).appendTo(subredditContainer);
-	var title =  $('<div/>',{ 
+	var title =  $('<h1/>',{ 
 		class:"subreddit-tag",
 		text:category
 		}).appendTo(subredditContainer);
-
 	var button =  $('<div/>',{ 
 		class:"btn btn-danger remove-btn",
 		})
 		.appendTo(rowOfComponents)
 		.append($('<dev/>',{class:'icon-remove icon-white'}));
-	var sliderWrapper =  $('<div/>',{class:"slider-wrapper"})
-		.css('width',$('#input-subreddit').width()+28+'px')
-		.appendTo(rowOfComponents);
-	var slider =  $('<div/>',{ 
-		class:"slider",
-		id:category,
-		})
-		// .slider({ 
-		// 	max: 1,
-		// 	min: 0,
-		// 	step: .01,
-		// 	slide: function(event, ui){barSlide(event,ui);}
-		// })
-		.appendTo(sliderWrapper);
+
 
 	subredditContainer.hide();
 	$('#subreddit-container-list').prepend(subredditContainer);
