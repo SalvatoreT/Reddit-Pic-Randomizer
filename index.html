@@ -10,10 +10,10 @@
 
 	<!-- Le styles -->
   <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
-	<link href="./assets/css/reddit-page.css" rel="stylesheet">
 	<link href="./assets/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link href="./assets/css/jquery.wijmo-open.1.5.0.css" rel="stylesheet">
 	<link href="./assets/css/jquery.-ui-1.8.16.custom.css" rel="stylesheet">
+  <link href="./assets/css/reddit-page.css" rel="stylesheet">
 
 
 	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -30,29 +30,28 @@
 </head>
 
 <body>
-	<div class="well container-fluid">
-		<div class="span12">
-			<div id="random-image" style='background-image: url("http://i.imgur.com/waJIe.jpg");'></div>
-		</div>
-	</div>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div id="image-container" class="container-fluid">
+    	<div id='reddit-image-container' class="well">
+  			<div id="random-image" style='background-image: url("http://i.imgur.com/waJIe.jpg");'></div>
+    	</div>
 
-	<div class="well">
-		<div class="row">
-			<form class="form-search">
-				<input id="input-subreddit" type="text" class="search-query" placeholder="Enter subreddit">
-				<div id ="add-subreddit"class="btn btn-success pull-right">
+    	<div class="well">
+			  <input id="input-subreddit" type="text" class="search-query" placeholder="enter subreddit">
+				<div id ="add-subreddit" class="btn btn-success pull-right">
           <div class='icon-plus icon-white'></div>
-        </div>
-			</form>
-		</div>
-	</div>
-	
-  <div id="subreddit-container-list"></div>
+  		  </div>
+      </div>
 
+      <div id="subreddit-container-list"></div>
+  	
+    </div>
+  	
+  </meta>
 	<!-- Le javascript
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="./assets/js/jquery-1.7.2.min.js"></script>
+  <script src="./assets/js/jquery-1.7.2.min.js"></script>
 	<script src="./assets/js/bootstrap-transition.js"></script>
 	<script src="./assets/js/bootstrap-button.js"></script>
 	<script src="./assets/js/bootstrap-typeahead.js"></script>

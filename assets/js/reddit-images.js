@@ -14,6 +14,8 @@ $(document).ready(function() {
 		addSubreddit(category);
 		updateImageDictionary(category);
 	});
+
+	$('#image-container').css('min-width',($(window).width()-40)+'px');
 });
 
 $("#add-subreddit").click(function() {
@@ -24,12 +26,22 @@ $("#add-subreddit").click(function() {
 	}
 });
 
+$("#input-subreddit").change(function(){$("#add-subreddit").click();});
+
+$('#reddit-image-container').click(function() {
+	var randSubreddit = randomSubreddit();
+	var randUrl = randomImageUrl(randSubreddit);
+	$('#random-image').css('background-image','url('+randUrl+')');
+});
+
 
 function addSubredditContainer(category) {
-	var subredditContainer = $('<div/>',{ class:"well" });
-	var rowOfComponents = $('<div/>',{ class:"row" }).appendTo(subredditContainer);
+	var subredditContainer = $('<div/>',{ 
+		class:"well subreddit-row"
+	}).css('height','20px');
+	var rowOfComponents = $('<div/>').appendTo(subredditContainer);
 	var title =  $('<h3/>',{ 
-		class:"subreddittag pull-left",
+		class:"subreddittag",
 		text:category
 		}).appendTo(rowOfComponents);
 	var slider =  $('<div/>',{ 
@@ -37,14 +49,21 @@ function addSubredditContainer(category) {
 		id:category,
 		}).appendTo(rowOfComponents);
 	var button =  $('<div/>',{ 
-		class:"btn btn-danger pull-right",
-		}).appendTo(rowOfComponents).append($('<dev/>',{class:'icon-remove icon-white'}));
+		class:"btn btn-danger remove-btn",
+		})
+		.appendTo(rowOfComponents)
+		.append($('<dev/>',{class:'icon-remove icon-white'}));
 
 	subredditContainer.hide();
 	$('#subreddit-container-list').prepend(subredditContainer);
-	subredditContainer.show(1000);
-	
+	subredditContainer.slideDown("slow");
+
+	button.click(function() {
+		subredditContainer.hide();
+		removeSubreddit(category);
+	});
 }
+
 
 /**
 * Call the Reddit API to get images for a given subreddit
@@ -59,6 +78,7 @@ function updateImageDictionary(category) {
 	    }
 	}).done(function(data){
 		var response = JSON.parse(data);
+		addSubreddit(category);
 		addImages(category, response[category]);
 		addSubredditContainer(category);
 	});
@@ -93,6 +113,13 @@ function randomImageUrl(category) {
 	if(urls.length == 0) return '';
 	var index = Math.floor(Math.random() * urls.length);
 	return urls[index];
+}
+
+function countUrls(category) {
+	if(!inSubreddits(category)) return 0;
+	if(subreddits[category]['images'] == null) return 0;
+	var urls = subreddits[category]['images'];
+	return urls.length;
 }
 
 /**
