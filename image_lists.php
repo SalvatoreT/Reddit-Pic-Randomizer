@@ -1,6 +1,7 @@
 <?php
 /*
 * This is the image retrieval api built on the Reddit API.
+* @author sal.testa@gmail.com Salvatore Testa
 */
 $subreddit = $_POST["subreddit"];
 $limit = isset($_POST["limit"]) ? $_POST["limit"] : 100;

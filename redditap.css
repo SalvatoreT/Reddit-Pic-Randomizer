@@ -1,0 +1,93 @@
+/**
+ * @fileoverview Most of ReddiTap is build on Twitter's
+ * bootstrap.css which is why there are seemingly random
+ * negative-valued classes and divs
+ * @author sal.testa@gmail.com Salvatore Testa
+ */
+
+/********************************************/
+/*Preloaded images defined in the index.html*/
+/********************************************/
+
+/*The box around the image*/
+#reddit-image-container {
+  margin-top: 20px;
+  background-size: 16px 16px;
+  background-repeat:no-repeat;
+  background-position: center center;
+  background-image: url('./ajax-loader.gif');
+}
+
+/*Image the user sees*/
+#random-image{
+  width:auto;
+  height:100%;
+  margin: auto;
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position: center center;
+}
+
+/*Contains the data entry fields*/
+#input-well {
+  height: 28px; 
+}
+
+/*Text input field*/
+#input-subreddit {
+  margin: 0px;
+  width: auto;
+  float: left;
+}
+
+/*Add button*/
+#add-subreddit {
+  float: right;
+}
+
+
+/****************************************************/
+/*Dynamically added content generated in redditap.js*/
+/****************************************************/
+
+/*Box containing the subreddit title, radio buttons, and delete button */
+.subreddit-row {
+  width: auto;
+  margin-left: 0px;
+  margin-right: 0px;
+  min-height: 28px;
+  text-align: center;
+}
+
+/*red button for removing subreddits*/
+.remove-btn {
+  margin-top: -3px;
+  float: right;
+}
+
+/*text label for the category*/
+.subreddit-tag {
+  height: 28px;
+  line-height: 28px;
+  font-size: 10px;
+  font-weight: bold;
+  float: left;
+}
+/*Change the size of the subreddit font past a threshold*/
+@media (min-width: 768px) {
+  .subreddit-tag {
+    font-size: 36px; 
+  }
+}
+
+/*Radio buttons to determine the weight of each subreddit*/
+.btn-group {
+  float: right;
+  margin-top: -4px;
+  height: 28px;
+  margin-right: 19px;
+}
+
+/*Prevent mobile devices from showing selection indicators*/
+* { -webkit-tap-highlight-color: rgba(0,0,0,0);}
+
