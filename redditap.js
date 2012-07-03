@@ -124,16 +124,35 @@ function addSubredditContainer(category) {
 * @param {string} category Subreddit we are calling
 */
 function updateImageDictionary(category) {
+	var url = 'http://www.reddit.com/r/' + category + '.json';
+	
 	$.ajax({
-	    url:'./image_lists.php',
-	    type:'POST',
-	    data: {
-		    'subreddit':category
-	    }
-	}).done(function(data){
-		var response = JSON.parse(data);
+		url: url,
+		data: {
+			'limit': 100
+		},
+		dataType: 'jsonp',
+		jsonp: 'jsonp' // callback parameter name: /foo.json?jsonp=MyCallback
+	}).done(function (response){
+		var urls = [];
+		
+		var posts = response.data.children, url;
+		for(var i = 0; i < posts.length; i++) {
+			url = posts[i].data.url;
+			
+			// Filter to imgur.com links (TODO: stricter URL parsing?)
+			if(url.indexOf('imgur.com') != -1 && url.indexOf('/a/') == -1) {
+				if(!url.match(/\.[a-z]{3,4}($|\?)/)) { // if has no file extension
+					url += '.jpg'; // add one
+				}
+				
+				urls.push(url);
+			}
+		}
+		
 		addSubreddit(category);
-		addImages(category, response[category]);
+		addImages(category, urls);
+		
 		if (countUrls(category) != 0) {
 			addSubredditContainer(category);
 		} else {
